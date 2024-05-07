@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT FORM</title>
+</head>
+<body>
+    <form>
+        <div>
+            <div>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div>
+                <label for="age">Age</label>
+                <input type="number" name="age" id="age">
+            </div>
+            <div>
+                <label >Gender</label>
+                <input type="radio" name="gender" class="gender" value="male">
+                <label for="gender">Male</label>
+                <input type="radio" name="gender" class="gender" value="female">
+                <label for="gender">Female</label>
+            </div>
+           <div>
+                <label for="course">Course</label>
+                <select name="course" id="course">
+                    <option value="java">Java</option>
+                    <option value="c">C</option>
+                    <option value="js">JavaScript</option> <!-- corrected value -->
+                </select>
+            </div>
+            <div>
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email">
+            </div>
+            <button type="button" onclick="func()">Save</button> <!-- corrected type -->
+            <button type="reset">Reset</button>
+    
+        </div> 
+        
+    </form>
+
+    <table border="2px" id="studentTable"> <!-- added id -->
+        <thead>
+            <tr>
+                <th>NAME</th><th>AGE</th><th>COURESE</th><th>GENDER</th><th>EMAIL</th><th>ACTION</th>
+            </tr>
+
+        </thead>
+    </table>
+    <script>
+        function func(){ // corrected function declaration
+            var n=document.getElementById("name").value;
+            var a=document.getElementById("age").value;
+            var g=document.querySelector('input[name="gender"]:checked').value; // corrected gender selection
+            var c=document.getElementById("course").value;
+            var e=document.getElementById("email").value;
+
+            var table = document.getElementById('studentTable'); // get table reference
+
+            var newRow = table.insertRow(); // insert a new row
+            var cell1 = newRow.insertCell(0); // insert cells
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+            var cell6 = newRow.insertCell(5);
+
+            // set cell values
+            cell1.innerHTML = n;
+            cell2.innerHTML = a;
+            cell3.innerHTML = c;
+            cell4.innerHTML = g;
+            cell5.innerHTML = e;
+            cell6.innerHTML = '<button onclick="del(this)">Delete</button>';
+           
+        }
+        function del(row){
+    var table = document.getElementById("studentTable")
+    var rowIndex = row.parentNode.parentNode.rowIndex // Get the row index of the button's parent row
+    table.deleteRow(rowIndex)
+}
+    </script>
+</body>
+</html>
